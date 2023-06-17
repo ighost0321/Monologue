@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>A man tlaks himself...</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+<style>
+.centered-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1 class="mt-3">Good day to you!</h1>
+		<h3>告訴我你現在想說什麼</h3>
+	</div>
+	<div class="card mt-3 centered-form">
+		<div class="card-body">
+			<form action="/speak" method="POST" class="mt-3">
+				<div class="mb-3">
+					<label for="inputText" class="form-label">Input Text</label>
+					<textarea class="form-control" id="inputText" name="talking"
+						placeholder="Enter your text" rows="5"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		<h3>Your speaking...</h3>
+		<ul id="messageList"></ul>
+		<script>
+	var url = 'http://localhost:8080/history'
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const messageList = document.getElementById('messageList');
+        data.forEach(message => {
+          const listItem = document.createElement('li');
+          listItem.textContent = message;
+          messageList.appendChild(listItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  </script>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
