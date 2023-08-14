@@ -23,14 +23,6 @@ public class TalkRESTfulService {
 	public String talk(@RequestBody JsonNode jsonNode) {
 		String text = jsonNode.get("text").asText();
 		log.info("Hear...." , text);
-		System.out.println("Call sleep...");
-		try {
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Wake up...");
 		Memo m = new Memo();
 		m.setWords(text);
 		try {
